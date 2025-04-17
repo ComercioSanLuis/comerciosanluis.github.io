@@ -21,11 +21,11 @@
 
     header {
       position: fixed;
-      top: 0;
+      top: -150px;
       width: 100%;
       background: linear-gradient(270deg, #000, #fff, #000);
       background-size: 300% 300%;
-      animation: fadeBG 3s ease-out forwards;
+      animation: navbarSlideDown 1.3s ease-out forwards, fadeBG 3s ease-out forwards;
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
@@ -38,6 +38,17 @@
     @keyframes fadeBG {
       0% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+
+    @keyframes navbarSlideDown {
+      0% {
+        top: -150px;
+        opacity: 0;
+      }
+      100% {
+        top: 0;
+        opacity: 1;
+      }
     }
 
     .logo {
@@ -183,10 +194,9 @@
 
     function cargarPagina(pagina) {
       document.getElementById('visor').src = pagina;
-
-      // Cierra el menú en celular cuando se selecciona una opción
       document.getElementById('navbar').classList.remove('active');
     }
   </script>
 </body>
 </html>
+
