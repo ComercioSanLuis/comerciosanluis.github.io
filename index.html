@@ -32,6 +32,7 @@
       align-items: center;
       z-index: 1000;
       box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      flex-wrap: wrap;
     }
 
     @keyframes fadeBG {
@@ -41,11 +42,12 @@
 
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #fff;
       text-shadow: 2px 2px 5px #000;
       animation: fadeInTitle 1.5s ease-out forwards;
       opacity: 0;
+      flex: 1;
     }
 
     @keyframes fadeInTitle {
@@ -105,6 +107,23 @@
     }
 
     @media (max-width: 768px) {
+      header {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding: 15px 20px;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        flex: 1;
+        order: 1;
+      }
+
+      .menu-toggle {
+        display: block;
+        order: 2;
+      }
+
       nav {
         flex-direction: column;
         background: rgba(0, 0, 0, 0.95);
@@ -117,6 +136,8 @@
         opacity: 0;
         transform: translateY(-10px);
         border-radius: 0 0 20px 20px;
+        padding: 0;
+        z-index: 999;
       }
 
       nav.active {
@@ -126,8 +147,9 @@
         padding: 20px;
       }
 
-      .menu-toggle {
-        display: block;
+      nav a {
+        justify-content: flex-start;
+        font-size: 1.1rem;
       }
     }
 
@@ -161,8 +183,10 @@
 
     function cargarPagina(pagina) {
       document.getElementById('visor').src = pagina;
+
+      // Cierra el menú en celular cuando se selecciona una opción
+      document.getElementById('navbar').classList.remove('active');
     }
   </script>
 </body>
 </html>
-
