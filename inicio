@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comercio San Luis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: #f5f5f5;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(270deg, #000, #fff, #000);
+      background-size: 300% 300%;
+      animation: fadeBG 3s ease-out forwards;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    @keyframes fadeBG {
+      0% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #fff;
+      text-shadow: 2px 2px 5px #000;
+      animation: fadeInTitle 1.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInTitle {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    nav a {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      transition: all 0.4s ease;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      border: 2px solid #fff;
+      box-shadow: 0 0 12px #fff;
+      color: #ffd700;
+    }
+
+    nav a i {
+      font-size: 1rem;
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #fff;
+      padding: 10px;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #fff;
+      transition: all 0.4s ease;
+    }
+
+    .menu-toggle:hover {
+      transform: rotate(90deg) scale(1.1);
+      border-color: #ffd700;
+      box-shadow: 0 0 15px #ffd700;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-10px);
+        border-radius: 0 0 20px 20px;
+      }
+
+      nav.active {
+        max-height: 300px;
+        opacity: 1;
+        transform: translateY(0);
+        padding: 20px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    iframe {
+      width: 100%;
+      height: calc(100vh - 100px);
+      border: none;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Comercio San Luis</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="navbar">
+      <a onclick="cargarPagina('local.html')"><i class="fas fa-store"></i> Local</a>
+      <a onclick="cargarPagina('arriendo.html')"><i class="fas fa-building"></i> Arriendo</a>
+      <a onclick="cargarPagina('acarreos.html')"><i class="fas fa-truck-moving"></i> Acarreos</a>
+    </nav>
+  </header>
+
+  <iframe id="visor" src="local.html"></iframe>
+
+  <script>
+    function toggleMenu() {
+      const navbar = document.getElementById('navbar');
+      navbar.classList.toggle('active');
+    }
+
+    function cargarPagina(pagina) {
+      document.getElementById('visor').src = pagina;
+    }
+  </script>
+</body>
+</html>
+
